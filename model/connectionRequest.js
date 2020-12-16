@@ -8,7 +8,7 @@ var ConnectionRequest = mongoose.Schema({
         type: mongoose.Types.ObjectId, ref: "UsersList", default: null
     },
     requestStatus : {
-        type : String
+        type : Boolean , default : 0
     }
 });
 

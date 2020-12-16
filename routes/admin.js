@@ -253,6 +253,7 @@ router.post('/updateflag' ,async function(req , res, next) {
         console.log(flag);
         if(flag.length == 1){
             var updatedata = await titleSchema.findByIdAndUpdate(id,{"isActive" : true});
+            console.log(updatedata);
             res.status(200).json({ Message : "Updated" , Data : updatedata , IsSuccess : true});
         }
         else{
@@ -1044,6 +1045,108 @@ router.post("/getAllMemberCategory" ,async function(req,res,next){
         }
     } catch (error) {
         res.status(500).json({ IsSuccess: false , Message: error.message });
+    }
+});
+
+router.post('/delbanner' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await bannerSchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    }
+});
+
+router.post('/delbuscategory' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await businessCategorySchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    }
+});
+
+router.post('/delcategory' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await newsCategorySchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    }
+});
+
+router.post('/delevent' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await eventSchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    }
+});
+
+router.post('/delmembership' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await memberModelSchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    }
+});
+
+router.post('/delsuccess' ,async function(req,res,next) {
+    var id =  req.body.id;
+    try {
+      let data = await successStorySchema.findByIdAndDelete(id);
+      if(data) {
+        res.status(200).json({ Message : "Deleted Successfully" ,Data : 1, IsSuccess : true});
+      }
+      else{
+        res.status(200).json({ Message : "User Not Found" , Data : 0, IsSuccess : true});
+      }
+  
+    }
+    catch (err){
+      res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
     }
 });
 

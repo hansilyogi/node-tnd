@@ -35,6 +35,34 @@ router.post("/networking" , async function(req,res,next){
   }
 });
 
+router.post("/networking_v2" , async function(req,res,next){
+  const { requestSender , requestReceiver  } = req.body;
+  try {
+    var record = await new networkSchema({
+      requestSender: requestSender,
+      requestReceiver: requestReceiver,
+    });
+    await record.save();
+    var usersData = await networkSchema.find()
+                                       .populate({
+                                         path: "requestSender",
+                                         select: "name"
+                                       })
+                                       .populate({
+                                        path: "requestReceiver",
+                                        select: "name"
+                                       });
+    if(record){
+      res.status(200).json({ IsSuccess: true , Data: usersData , Message: "Request Send Successfully" });
+    }else{
+      res.status(200).json({ IsSuccess: true , Data: 0 , Message: "Request Sending Failed" });
+    }
+  } catch (error) {
+    res.status(500).json({ IsSuccess: false , Message: error.message });
+  }
+});
+
+
 router.post("/updateReqStatus" , async function(req,res,next){
   const { requestId , requestStatus } = req.body;
   try {
