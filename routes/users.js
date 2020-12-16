@@ -43,7 +43,7 @@ router.post("/networking_v2" , async function(req,res,next){
       requestReceiver: requestReceiver,
     });
     await record.save();
-    var usersData = await networkSchema.find()
+    var usersData = await networkSchema.find(record)
                                        .populate({
                                          path: "requestSender",
                                          select: "name"
@@ -52,6 +52,7 @@ router.post("/networking_v2" , async function(req,res,next){
                                         path: "requestReceiver",
                                         select: "name"
                                        });
+    // await usersData.save();
     if(record){
       res.status(200).json({ IsSuccess: true , Data: usersData , Message: "Request Send Successfully" });
     }else{
@@ -62,6 +63,19 @@ router.post("/networking_v2" , async function(req,res,next){
   }
 });
 
+router.post("/updateReqStatus_v2" , async function(req,res,next){
+  const { requestId } = req.body;
+  try {
+    var record = await networkSchema.find({ _id: requestId });
+    console.log(record);
+    if(record.length == 1){
+      let updateIs = await networkSchema.findByIdAndUpdate(requestId,{ "requestStatus": true });
+      res.status(200).json({ IsSuccess: true , Data: 1 , Message: "Request Updated" });
+    }
+  } catch (error) {
+    res.status(500).json({ IsSuccess: false , Message: error.message });
+  }
+});
 
 router.post("/updateReqStatus" , async function(req,res,next){
   const { requestId , requestStatus } = req.body;
