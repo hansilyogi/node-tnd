@@ -245,7 +245,7 @@ router.post('/getTitle' ,async function(req,res,next) {
 
 router.post('/updateflag' ,async function(req , res, next) {
     const { id } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     try{
         var flag = await titleSchema.find({
             _id: id
@@ -253,8 +253,8 @@ router.post('/updateflag' ,async function(req , res, next) {
         console.log(flag);
         if(flag.length == 1){
             var updatedata = await titleSchema.findByIdAndUpdate(id,{"isActive" : true});
-            console.log(updatedata);
-            res.status(200).json({ Message : "Updated" , Data : updatedata , IsSuccess : true});
+            // console.log(updatedata);
+            res.status(200).json({ Message : "Data Updated" , Data : 1 , IsSuccess : true});
         }
         else{
             res.status(200).json({ Message : "Title Not Found" , Data : 0 , IsSuccess : true});
