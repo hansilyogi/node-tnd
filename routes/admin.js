@@ -260,7 +260,7 @@ router.post('/updateflag' ,async function(req , res, next) {
             res.status(200).json({ Message : "Title Not Found" , Data : 0 , IsSuccess : true});
         }
     }
-    catch {
+    catch(err) {
         res.status(500).json({ IsSuccess: false , Message: err.message });
     }
 });
