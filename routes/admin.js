@@ -348,6 +348,59 @@ router.post('/addnews', uploadNewsImg.single('newsImage'), async function(req,re
     }
 });
 
+router.post('/getsingleid', async function(req,res,next) {
+    const id = req.body.id;
+    console.log(id);
+    try{
+        var name_id = await directoryData.find({_id : id});
+        if(name_id){
+            res.status(200).json({ Message : "Member Found", Data : name_id, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Member Not Found", Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err)
+    {
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+router.post('/getsingleoffer', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var offer_id = await offerSchema.find({_id : id});
+        if(offer_id){
+            res.status(200).json({ Message : "Offer Found", Data : offer_id, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Offer Not Found", Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+})
+
+router.post('/getsinglenews', async function(req,res, next) {
+    const id = req.body.id;
+    console.log(id);
+    try{
+        var news = await newsModelSchema.find({_id : id});
+        console.log(news);
+        if(news){
+            res.status(200).json({ Message : "News Found", Data : news, IsSuccess : true});
+        } 
+        else{
+            res.status(200).json({ Message : "News Not Found", Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err)
+    {
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
 router.post('/updatenews', async function(req , res, next){
     console.log(req.body);
     const id = req.body.id;
