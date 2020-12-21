@@ -401,6 +401,87 @@ router.post('/getsinglenews', async function(req,res, next) {
     }
 });
 
+router.post('/getsingleevent', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var eventid = await eventSchema.find({_id : id});
+        if(eventid){
+            res.status(200).json({ Message : "Event Found", Data : eventid, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Event Not Found", Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+router.post('/getsuccess', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var succid = await successStorySchema.find({_id : id});
+        if(succid){
+            res.status(200).json({ Message : "Success Story Found", Data : succid, IsSuccess : true});
+        }
+        else {
+            res.status(200).json({ Message : "Success Story Not Found", Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+router.post('/getsinglemembership', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var memid = await memberModelSchema.find({_id : id});
+        if(memid){
+            res.status(200).json({ Message : "Membership Found" , Data : memid, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Membership Not Found" , Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+router.post('/getsinglebuscat', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var buscaid = await businessCategorySchema.find({_id : id});
+        if(buscaid){
+            res.status(200).json({ Message : "Business Category Found" , Data : buscaid, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Business Category Not Found" , Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+router.post('/getsinglecategory', async function(req,res,next) {
+    const id = req.body.id;
+    try{
+        var catid = await newsCategorySchema.find({_id : id});
+        if(catid){
+            res.status(200).json({ Message : "Category Found" , Data : catid, IsSuccess : true});
+        }
+        else{
+            res.status(200).json({ Message : "Category Not Found" , Data : 0, IsSuccess : true});
+        }
+    }
+    catch(err){
+        res.status(500).json({ Message: error.message, IsSuccess: false });
+    }
+});
+
+
 router.post('/updatenews', async function(req , res, next){
     console.log(req.body);
     const id = req.body.id;
