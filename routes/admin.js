@@ -367,9 +367,9 @@ router.post('/getsingleid', async function(req,res,next) {
 });
 
 router.post('/getsingleoffer', async function(req,res,next) {
-    const id = req.body.id;
+    const id2 = req.body.id;
     try{
-        var offer_id = await offerSchema.find({_id : id});
+        var offer_id = await offerSchema.find({_id : id2});
         if(offer_id){
             res.status(200).json({ Message : "Offer Found", Data : offer_id, IsSuccess : true});
         }
@@ -383,10 +383,10 @@ router.post('/getsingleoffer', async function(req,res,next) {
 })
 
 router.post('/getsinglenews', async function(req,res, next) {
-    const id = req.body.id;
+    const id3 = req.body.id;
     console.log(id);
     try{
-        var news = await newsModelSchema.find({_id : id});
+        var news = await newsModelSchema.find({_id : id3});
         console.log(news);
         if(news){
             res.status(200).json({ Message : "News Found", Data : news, IsSuccess : true});
@@ -402,9 +402,9 @@ router.post('/getsinglenews', async function(req,res, next) {
 });
 
 router.post('/getsingleevent', async function(req,res,next) {
-    const id = req.body.id;
+    const id4 = req.body.id;
     try{
-        var eventid = await eventSchema.find({_id : id});
+        var eventid = await eventSchema.find({_id : id4});
         if(eventid){
             res.status(200).json({ Message : "Event Found", Data : eventid, IsSuccess : true});
         }
@@ -418,9 +418,9 @@ router.post('/getsingleevent', async function(req,res,next) {
 });
 
 router.post('/getsuccess', async function(req,res,next) {
-    const id = req.body.id;
+    const id5 = req.body.id;
     try{
-        var succid = await successStorySchema.find({_id : id});
+        var succid = await successStorySchema.find({_id : id5});
         if(succid){
             res.status(200).json({ Message : "Success Story Found", Data : succid, IsSuccess : true});
         }
@@ -434,9 +434,9 @@ router.post('/getsuccess', async function(req,res,next) {
 });
 
 router.post('/getsinglemembership', async function(req,res,next) {
-    const id = req.body.id;
+    const id6 = req.body.id;
     try{
-        var memid = await memberModelSchema.find({_id : id});
+        var memid = await memberModelSchema.find({_id : id6});
         if(memid){
             res.status(200).json({ Message : "Membership Found" , Data : memid, IsSuccess : true});
         }
@@ -450,9 +450,9 @@ router.post('/getsinglemembership', async function(req,res,next) {
 });
 
 router.post('/getsinglebuscat', async function(req,res,next) {
-    const id = req.body.id;
+    const id7 = req.body.id;
     try{
-        var buscaid = await businessCategorySchema.find({_id : id});
+        var buscaid = await businessCategorySchema.find({_id : id7});
         if(buscaid){
             res.status(200).json({ Message : "Business Category Found" , Data : buscaid, IsSuccess : true});
         }
@@ -466,9 +466,9 @@ router.post('/getsinglebuscat', async function(req,res,next) {
 });
 
 router.post('/getsinglecategory', async function(req,res,next) {
-    const id = req.body.id;
+    const id8 = req.body.id;
     try{
-        var catid = await newsCategorySchema.find({_id : id});
+        var catid = await newsCategorySchema.find({_id : id8});
         if(catid){
             res.status(200).json({ Message : "Category Found" , Data : catid, IsSuccess : true});
         }
